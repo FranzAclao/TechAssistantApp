@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "TechAssistantApp",
-    "slug": "TechAssistantApp",
+    "name": "PesoSense",
+    "slug": "pesosense",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "techassistantapp",
+    "scheme": "pesosense",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -44,7 +44,8 @@
             "backgroundColor": "#000000"
           }
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true,

@@ -1,16 +1,13 @@
-export const Colors = {
-  background: "#F2F2F7",
-  cardBackground: "#FFFFFF",
-  shadow: "#000000",
-
-  primary: "#007AFF",
-  destructive: "#FF3B30",
-  success: "#34C759",
-
-  textPrimary: "#000000",
-  textSecondary: "rgba(60,60,67,0.6)",
-  placeholder: "rgba(60,60,67,0.6)",
-
-  white: "#FFFFFF",
+export const COLORS = {
+  BACKGROUND: "#F2F2F7",
+  CARD: "#FFFFFF",
+  PRIMARY: "#1B4F72",
+  ACCENT: "#F4D03F",
+  SUCCESS: "#34C759",
+  DANGER: "#FF3B30",
+  TEXT_PRIMARY: "#000000",
+  TEXT_SECONDARY: "#6C6C70",
+  BORDER: "#E5E5EA",
+  DISCLAIMER: "#8E8E93",
 } as const;
 

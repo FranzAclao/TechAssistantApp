@@ -7,21 +7,26 @@ import {
   type TouchableOpacityProps,
 } from "react-native";
 
-import { Colors } from "../constants/colors";
+import { COLORS } from "../constants/colors";
+
+type Props = Omit<TouchableOpacityProps, "onPress"> & {
+  label?: string;
+  title?: string;
+  onPress: () => void;
+  disabled?: boolean;
+  loading?: boolean;
+};
 
 export function PrimaryButton({
+  label,
   title,
-  tone = "primary",
-  loading,
-  disabled,
   onPress,
+  disabled,
+  loading,
+  style,
   ...rest
-}: Omit<TouchableOpacityProps, "onPress"> & {
-  title: string;
-  onPress: () => void;
-  tone?: "primary" | "destructive";
-  loading?: boolean;
-}) {
+}: Props) {
+  const computedLabel = label ?? title ?? "";
   const isDisabled = Boolean(disabled) || Boolean(loading);
 
   return (
@@ -30,17 +35,12 @@ export function PrimaryButton({
       activeOpacity={0.85}
       onPress={onPress}
       disabled={isDisabled}
-      style={[
-        styles.button,
-        tone === "destructive" ? styles.destructive : styles.primary,
-        isDisabled ? styles.disabled : null,
-        rest.style,
-      ]}
+      style={[styles.button, isDisabled ? styles.disabled : null, style]}
     >
       {loading ? (
-        <ActivityIndicator color={Colors.white} />
+        <ActivityIndicator color={COLORS.CARD} />
       ) : (
-        <Text style={styles.text}>{title}</Text>
+        <Text style={styles.text}>{computedLabel}</Text>
       )}
     </TouchableOpacity>
   );
@@ -48,25 +48,20 @@ export function PrimaryButton({
 
 const styles = StyleSheet.create({
   button: {
-    height: 50,
-    borderRadius: 10,
+    width: "100%",
+    height: 52,
+    borderRadius: 14,
+    backgroundColor: COLORS.PRIMARY,
     alignItems: "center",
     justifyContent: "center",
-    width: "100%",
-  },
-  primary: {
-    backgroundColor: Colors.primary,
-  },
-  destructive: {
-    backgroundColor: Colors.destructive,
   },
   disabled: {
-    opacity: 0.55,
+    opacity: 0.6,
   },
   text: {
+    color: COLORS.CARD,
     fontSize: 17,
-    fontWeight: "600",
-    color: Colors.white,
+    fontWeight: "700",
     letterSpacing: 0.2,
   },
 });
