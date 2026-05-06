@@ -1,5 +1,6 @@
 export const LM_STUDIO_URL = "http://10.8.0.3:3011/api/v1/chat";
-export const LM_STUDIO_MODEL = "gemma-4-e4b-uncensored-hauhaucs-aggressive";
+export const LM_STUDIO_MODEL = "google/gemma-4-e2b";
+export const LM_STUDIO_TOKEN = "sk-lm-jGOAutyE:RogzGgjNgoxXOkx5fBsL";
 
 export const SUPABASE_URL = "https://ruyyrnixuclltdskngqr.supabase.co";
 export const SUPABASE_ANON_KEY =

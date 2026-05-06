@@ -22,17 +22,21 @@ function AuthGate() {
   const routeKey = useMemo(() => segments.join('/'), [segments]);
   const inTabs = segments[0] === '(tabs)';
   const inAuth = segments[0] === 'screens' && segments[1] === 'auth';
+  const inAppScreens = segments[0] === 'screens' && segments[1] !== 'auth';
+  const inIndex = segments.length === 0 || segments[0] === 'index';
 
   useEffect(() => {
     if (isChecking) return;
 
     if (session) {
-      if (!inTabs) router.replace('/(tabs)/dashboard');
+      // Allow authenticated users to stay in tabs or navigate to the check-in flow screens.
+      if (!inTabs && !inAppScreens) router.replace('/(tabs)/dashboard');
       return;
     }
 
-    if (!inAuth) router.replace('/screens/auth/LoginScreen');
-  }, [inAuth, inTabs, isChecking, routeKey, router, session]);
+    // If not authenticated, only allow auth screens.
+    if (!inAuth && !inIndex) router.replace('/screens/auth/LoginScreen');
+  }, [inAppScreens, inAuth, inIndex, inTabs, isChecking, routeKey, router, session]);
 
   if (isChecking) {
     return (
